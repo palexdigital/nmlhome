@@ -51,7 +51,8 @@ ul{list-style:none}
 .tabs a.active{color:#d4af37;border-bottom:1px solid #d4af37}
 .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .product-card-new{background:#141414;border:1px solid #2b2b2b;padding:15px;display:flex;flex-direction:column;justify-content:between}
-.product-card-new img{width:100%;aspect-ratio:340/420;object-fit:cover}
+.product-card-new img{width:100%;aspect-ratio:340/420;object-fit:cover;cursor:pointer;transition:opacity 0.2s}
+.product-card-new img:hover{opacity:0.85}
 .product-card-new h4{font-size:12px;font-weight:400;margin-top:14px;line-height:1.45;color:#f5f4f2;letter-spacing:.01em;min-height:42px}
 .swatches{display:flex;gap:6px;margin-top:10px;margin-bottom:15px}
 .swatch{width:14px;height:14px;border:1px solid #2b2b2b}
@@ -113,6 +114,22 @@ footer{background:#141414;border-top:1px solid #2b2b2b}
 .checkout-form input{background:#0d0d0d;border:1px solid #2b2b2b;padding:10px;color:#f5f4f2;font-size:12px;width:100%}
 .checkout-form input:focus{border-color:#d4af37;outline:none}
 .btn-checkout{background:#d4af37;color:#0d0d0d;width:100%;padding:14px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:10px}
+
+/* Modal Picture Slider Panel */
+.slider-modal{display:none;position:fixed;inset:0;background:rgba(13,13,13,0.95);z-index:300;align-items:center;justify-content:center;padding:20px}
+.slider-modal.active{display:flex}
+.slider-container{background:#141414;border:1px solid #2b2b2b;max-width:500px;width:100%;padding:24px;position:relative;display:flex;flex-direction:column;gap:16px}
+.close-slider{position:absolute;top:12px;right:16px;color:#f5f4f2;font-size:24px;cursor:pointer}
+.slider-view{position:relative;width:100%;aspect-ratio:340/420;overflow:hidden}
+.slider-view img{width:100%;height:100%;object-fit:cover}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(13,13,13,0.7);color:#d4af37;border:1px solid #2b2b2b;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;font-weight:bold}
+.slider-arrow.left{left:10px}
+.slider-arrow.right{right:10px}
+.slider-info-box{text-align:left}
+.slider-info-box h4{font-family:Georgia,serif;font-size:16px;color:#d4af37;margin-bottom:6px}
+.slider-thumbnails{display:flex;gap:8px;margin-top:4px;overflow-x:auto}
+.slider-thumbnails img{width:50px;height:60px;object-fit:cover;border:1px solid #2b2b2b;cursor:pointer;opacity:0.6}
+.slider-thumbnails img.active{border-color:#d4af37;opacity:1}
 
 @media(max-width:768px){
   .container,.top-bar-inner,.header-inner,.footer-upper,.footer-bottom,.site-credits{padding-left:20px;padding-right:20px}
@@ -272,6 +289,24 @@ footer{background:#141414;border-top:1px solid #2b2b2b}
   </div>
 </div>
 
+<!-- Dynamic Image Slider Overlay Modal -->
+<div class="slider-modal" id="sliderModal" onclick="closeSliderOnBackground(event)">
+  <div class="slider-container">
+    <span class="close-slider" onclick="closeSlider()">&times;</span>
+    <div class="slider-view">
+      <button class="slider-arrow left" onclick="changeSlide(-1)">&#10094;</button>
+      <img id="modalSliderImg" src="" alt="">
+      <button class="slider-arrow right" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+    <div class="slider-thumbnails" id="modalThumbnails"></div>
+    <div class="slider-info-box">
+      <h4 id="modalProductName">Product Name</h4>
+      <div id="modalPriceContainer" style="margin-bottom:12px;"></div>
+      <button class="btn-add-cart" id="modalAddCartBtn">Add To Cart</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-upper">
     <div class="social">
@@ -301,27 +336,29 @@ footer{background:#141414;border-top:1px solid #2b2b2b}
 
 <script>
 const inventory = [
-  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion1a.jpeg' },
-  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion2a.jpeg' },
-  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion3a.jpeg' },
-  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion4a.jpeg' },
-  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion5a.jpeg' },
-  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion6a.jpeg' },
-  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], img: 'cushion7a.jpeg' },
-  { id: 8, category: 'Giorgio Satin', shade: 'Burgundy', name: 'Burgundy Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], img: 'giorgiosatin1a.jpeg' },
-  { id: 9, category: 'Giorgio Satin', shade: 'Blue', name: 'Pearl Blue Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], img: 'giorgiosatin2a.jpeg' },
-  { id: 10, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 1 — Red Retro Cafe Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], img: 'kitchenovenmitts1a.jpeg' },
-  { id: 11, category: 'Oven Mitts', shade: 'Blue', name: 'Oven Mitts 2 — Blue Vintage Bakery Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], img: 'kitchenovenmitts2a.jpeg' },
-  { id: 12, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 3 — Solid Red Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], img: 'kitchenovenmitts3a.jpeg' },
-  { id: 13, category: 'Aprons', shade: 'Red', name: 'Apron 1 — Red Retro Cafe Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], img: 'kitchenaprons1a.jpeg' },
-  { id: 14, category: 'Aprons', shade: 'Blue', name: 'Apron 2 — Blue Vintage Bakery Theme Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], img: 'kitchenaprons2a.jpeg' },
-  { id: 15, category: 'Aprons', shade: 'Red', name: 'Apron 3 — Blue/Red Vintage Bakery Apron & Mitts', basePrice: 180, pricing: [{ label: 'Combo Option - R180', value: 180 }], img: 'kitchenaprons3a.jpeg' },
-  { id: 16, category: 'Combos', shade: 'Red', name: 'Combo 1 — Red Retro Cafe Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], img: 'kitchenovenmitts&apronscombo1a.jpeg' },
-  { id: 17, category: 'Combos', shade: 'Blue', name: 'Combo 2 — Blue Vintage Bakery Theme Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], img: 'kitchenovenmitts&apronscombo2a.jpeg' }
+  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion1a.jpeg', 'cushion2a.jpeg', 'cushion3a.jpeg'] },
+  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion2a.jpeg', 'cushion4a.jpeg', 'cushion1a.jpeg'] },
+  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion3a.jpeg', 'cushion5a.jpeg', 'cushion2a.jpeg'] },
+  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion4a.jpeg', 'cushion1a.jpeg', 'cushion7a.jpeg'] },
+  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion5a.jpeg', 'cushion3a.jpeg', 'cushion6a.jpeg'] },
+  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion6a.jpeg', 'cushion2a.jpeg', 'cushion1a.jpeg'] },
+  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion7a.jpeg', 'cushion4a.jpeg', 'cushion2a.jpeg'] },
+  { id: 8, category: 'Giorgio Satin', shade: 'Burgundy', name: 'Burgundy Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin1a.jpeg', 'giorgiosatin2a.jpeg'] },
+  { id: 9, category: 'Giorgio Satin', shade: 'Blue', name: 'Pearl Blue Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin2a.jpeg', 'giorgiosatin1a.jpeg'] },
+  { id: 10, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 1 — Red Retro Cafe Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts1a.jpeg', 'kitchenovenmitts3a.jpeg'] },
+  { id: 11, category: 'Oven Mitts', shade: 'Blue', name: 'Oven Mitts 2 — Blue Vintage Bakery Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts2a.jpeg', 'kitchenovenmitts1a.jpeg'] },
+  { id: 12, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 3 — Solid Red Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts3a.jpeg', 'kitchenovenmitts2a.jpeg'] },
+  { id: 13, category: 'Aprons', shade: 'Red', name: 'Apron 1 — Red Retro Cafe Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons1a.jpeg', 'kitchenaprons3a.jpeg'] },
+  { id: 14, category: 'Aprons', shade: 'Blue', name: 'Apron 2 — Blue Vintage Bakery Theme Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons2a.jpeg', 'kitchenaprons1a.jpeg'] },
+  { id: 15, category: 'Aprons', shade: 'Red', name: 'Apron 3 — Blue/Red Vintage Bakery Apron & Mitts', basePrice: 180, pricing: [{ label: 'Combo Option - R180', value: 180 }], images: ['kitchenaprons3a.jpeg', 'kitchenaprons2a.jpeg'] },
+  { id: 16, category: 'Combos', shade: 'Red', name: 'Combo 1 — Red Retro Cafe Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo1a.jpeg', 'kitchenovenmitts&apronscombo2a.jpeg'] },
+  { id: 17, category: 'Combos', shade: 'Blue', name: 'Combo 2 — Blue Vintage Bakery Theme Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo2a.jpeg', 'kitchenovenmitts&apronscombo1a.jpeg'] }
 ];
 
 let cart = [];
 let currentCategory = 'All';
+let currentSliderItem = null;
+let currentSliderIndex = 0;
 
 function renderProducts(items) {
   const grid = document.getElementById('productGrid');
@@ -329,7 +366,7 @@ function renderProducts(items) {
   items.forEach(item => {
     let selectMarkup = '';
     if (item.pricing.length > 1) {
-      selectMarkup = `<select class="price-select" id="priceSelect-${item.id}">
+      selectMarkup = `<select class="price-select" id="priceSelect-${item.id}" onchange="syncModalPrice(${item.id})">
         ${item.pricing.map(p => `<option value="${p.value}">${p.label}</option>`).join('')}
       </select>`;
     } else {
@@ -339,7 +376,7 @@ function renderProducts(items) {
 
     grid.innerHTML += `
       <div class="product-card-new">
-        <img src="${item.img}" alt="${item.name}">
+        <img src="${item.images[0]}" alt="${item.name}" onclick="openSlider(${item.id})">
         <h4>${item.name}</h4>
         ${selectMarkup}
         <button class="btn-add-cart" onclick="addToCart(${item.id})">Add To Cart</button>
@@ -355,12 +392,89 @@ function renderSpotlight() {
   spotlightItems.forEach(item => {
     spotlightGrid.innerHTML += `
       <div class="product-card-new">
-        <img src="${item.img}" alt="${item.name}">
+        <img src="${item.images[0]}" alt="${item.name}" onclick="openSlider(${item.id})">
         <h4>${item.name}</h4>
         <button class="btn-add-cart" onclick="addToCart(${item.id})">Add To Cart</button>
       </div>
     `;
   });
+}
+
+/* Picture Slider Logic */
+function openSlider(id) {
+  const item = inventory.find(i => i.id === id);
+  if (!item) return;
+  currentSliderItem = item;
+  currentSliderIndex = 0;
+  
+  document.getElementById('modalProductName').innerText = item.name;
+  
+  // Clone or copy price selector to inside modal view
+  const modalPriceContainer = document.getElementById('modalPriceContainer');
+  const mainSelect = document.getElementById(`priceSelect-${id}`);
+  if (mainSelect && mainSelect.tagName === 'SELECT') {
+    modalPriceContainer.innerHTML = `
+      <select class="price-select" id="modalPriceSelect" onchange="syncMainPrice(${id})">
+        ${Array.from(mainSelect.options).map(o => `<option value="${o.value}" ${o.selected ? 'selected' : ''}>${o.text}</option>`).join('')}
+      </select>
+    `;
+  } else {
+    const label = item.pricing[0].label;
+    modalPriceContainer.innerHTML = `<div style="font-size:13px; color:#d4af37;">${label}</div>`;
+  }
+
+  // Bind add to cart dynamic button inside modal context
+  document.getElementById('modalAddCartBtn').onclick = function() {
+    addToCart(id, true);
+  };
+
+  updateSliderMedia();
+  document.getElementById('sliderModal').classList.add('active');
+}
+
+function updateSliderMedia() {
+  if (!currentSliderItem) return;
+  const mainImg = document.getElementById('modalSliderImg');
+  mainImg.src = currentSliderItem.images[currentSliderIndex];
+  
+  const thumbsContainer = document.getElementById('modalThumbnails');
+  thumbsContainer.innerHTML = currentSliderItem.images.map((img, index) => `
+    <img src="${img}" class="${index === currentSliderIndex ? 'active' : ''}" onclick="setSlideIndex(${index})">
+  `).join('');
+}
+
+function changeSlide(direction) {
+  if (!currentSliderItem) return;
+  currentSliderIndex += direction;
+  if (currentSliderIndex >= currentSliderItem.images.length) currentSliderIndex = 0;
+  if (currentSliderIndex < 0) currentSliderIndex = currentSliderItem.images.length - 1;
+  updateSliderMedia();
+}
+
+function setSlideIndex(index) {
+  currentSliderIndex = index;
+  updateSliderMedia();
+}
+
+function syncMainPrice(id) {
+  const modalSel = document.getElementById('modalPriceSelect');
+  const mainSel = document.getElementById(`priceSelect-${id}`);
+  if (modalSel && mainSel) mainSel.value = modalSel.value;
+}
+
+function syncModalPrice(id) {
+  const modalSel = document.getElementById('modalPriceSelect');
+  const mainSel = document.getElementById(`priceSelect-${id}`);
+  if (modalSel && mainSel) modalSel.value = mainSel.value;
+}
+
+function closeSlider() {
+  document.getElementById('sliderModal').classList.remove('active');
+  currentSliderItem = null;
+}
+
+function closeSliderOnBackground(e) {
+  if (e.target.id === 'sliderModal') closeSlider();
 }
 
 function filterCategory(cat) {
@@ -403,17 +517,26 @@ function toggleCart(e) {
   document.getElementById('cartDrawer').classList.toggle('open');
 }
 
-function addToCart(id) {
+function addToCart(id, fromModal = false) {
   const item = inventory.find(i => i.id === id);
-  const element = document.getElementById(`priceSelect-${id}`);
-  const selectedPrice = element ? parseInt(element.value) : item.basePrice;
+  let selectedPrice = item.basePrice;
+  
+  if (fromModal) {
+    const modalElement = document.getElementById('modalPriceSelect');
+    if (modalElement) selectedPrice = parseInt(modalElement.value);
+  } else {
+    const mainElement = document.getElementById(`priceSelect-${id}`);
+    if (mainElement) selectedPrice = parseInt(mainElement.value);
+  }
   
   cart.push({
     ...item,
-    finalPrice: selectedPrice
+    finalPrice: selectedPrice,
+    img: item.images[0]
   });
   
   updateCartUI();
+  if (fromModal) closeSlider();
   document.getElementById('cartDrawer').classList.add('open');
 }
 
@@ -445,7 +568,6 @@ function updateCartUI() {
   document.getElementById('cartTotalDisplay').innerText = 'R' + grandTotal;
 }
 
-// Full structured message generation taking customer details to WhatsApp
 function handleCheckout(e) {
   e.preventDefault();
   if (cart.length === 0) {
