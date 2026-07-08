@@ -86,7 +86,7 @@ footer{background:#141414;border-top:1px solid #2b2b2b}
 .footer-col ul li{margin-bottom:10px}
 .footer-col ul a{font-size:12px;color:#a8a8a8}
 .footer-col ul a:hover{color:#d4af37}
-.footer-bottom{max-width:1440px;margin:0 auto;padding:24px 48px 32px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #2b2b2b}
+.footer-bottom(max-width:1440px;margin:0 auto;padding:24px 48px 32px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #2b2b2b)
 .footer-bottom-left{display:flex;gap:20px;font-size:11px;color:#a8a8a8}
 .footer-bottom-left a:hover{color:#d4af37}
 .footer-logo{font-size:28px;font-weight:600;letter-spacing:.22em;color:#d4af37}
@@ -336,23 +336,23 @@ footer{background:#141414;border-top:1px solid #2b2b2b}
 
 <script>
 const inventory = [
-  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion1a.jpeg', 'cushion2a.jpeg', 'cushion3a.jpeg'] },
-  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion2a.jpeg', 'cushion4a.jpeg', 'cushion1a.jpeg'] },
-  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion3a.jpeg', 'cushion5a.jpeg', 'cushion2a.jpeg'] },
-  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion4a.jpeg', 'cushion1a.jpeg', 'cushion7a.jpeg'] },
-  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion5a.jpeg', 'cushion3a.jpeg', 'cushion6a.jpeg'] },
-  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion6a.jpeg', 'cushion2a.jpeg', 'cushion1a.jpeg'] },
-  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion7a.jpeg', 'cushion4a.jpeg', 'cushion2a.jpeg'] },
-  { id: 8, category: 'Giorgio Satin', shade: 'Burgundy', name: 'Burgundy Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin1a.jpeg', 'giorgiosatin2a.jpeg'] },
-  { id: 9, category: 'Giorgio Satin', shade: 'Blue', name: 'Pearl Blue Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin2a.jpeg', 'giorgiosatin1a.jpeg'] },
-  { id: 10, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 1 — Red Retro Cafe Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts1a.jpeg', 'kitchenovenmitts3a.jpeg'] },
-  { id: 11, category: 'Oven Mitts', shade: 'Blue', name: 'Oven Mitts 2 — Blue Vintage Bakery Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts2a.jpeg', 'kitchenovenmitts1a.jpeg'] },
-  { id: 12, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 3 — Solid Red Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts3a.jpeg', 'kitchenovenmitts2a.jpeg'] },
-  { id: 13, category: 'Aprons', shade: 'Red', name: 'Apron 1 — Red Retro Cafe Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons1a.jpeg', 'kitchenaprons3a.jpeg'] },
-  { id: 14, category: 'Aprons', shade: 'Blue', name: 'Apron 2 — Blue Vintage Bakery Theme Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons2a.jpeg', 'kitchenaprons1a.jpeg'] },
-  { id: 15, category: 'Aprons', shade: 'Red', name: 'Apron 3 — Blue/Red Vintage Bakery Apron & Mitts', basePrice: 180, pricing: [{ label: 'Combo Option - R180', value: 180 }], images: ['kitchenaprons3a.jpeg', 'kitchenaprons2a.jpeg'] },
-  { id: 16, category: 'Combos', shade: 'Red', name: 'Combo 1 — Red Retro Cafe Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo1a.jpeg', 'kitchenovenmitts&apronscombo2a.jpeg'] },
-  { id: 17, category: 'Combos', shade: 'Blue', name: 'Combo 2 — Blue Vintage Bakery Theme Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo2a.jpeg', 'kitchenovenmitts&apronscombo1a.jpeg'] }
+  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion1a.jpeg', 'cushion1b.jpeg', 'cushion1c.jpeg', 'cushion1d.jpeg'] },
+  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion2a.jpeg', 'cushion2b.jpeg', 'cushion2c.jpeg', 'cushion2d.jpeg'] },
+  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion3a.jpeg', 'cushion3b.jpeg', 'cushion3c.jpeg', 'cushion3d.jpeg'] },
+  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion4a.jpeg', 'cushion4b.jpeg', 'cushion4c.jpeg', 'cushion4d.jpeg'] },
+  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion5a.jpeg', 'cushion5b.jpeg', 'cushion5c.jpeg', 'cushion5d.jpeg'] },
+  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion6a.jpeg', 'cushion6b.jpeg', 'cushion6c.jpeg', 'cushion6d.jpeg'] },
+  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion7a.jpeg', 'cushion7b.jpeg', 'cushion7c.jpeg', 'cushion7d.jpeg'] },
+  { id: 8, category: 'Giorgio Satin', shade: 'Burgundy', name: 'Burgundy Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin1a.jpeg', 'giorgiosatin1b.jpeg', 'giorgiosatin1c.jpeg', 'giorgiosatin1d.jpeg'] },
+  { id: 9, category: 'Giorgio Satin', shade: 'Blue', name: 'Pearl Blue Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin2a.jpeg', 'giorgiosatin2b.jpeg', 'giorgiosatin2c.jpeg', 'giorgiosatin2d.jpeg'] },
+  { id: 10, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 1 — Red Retro Cafe Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts1a.jpeg', 'kitchenovenmitts1b.jpeg', 'kitchenovenmitts1c.jpeg', 'kitchenovenmitts1d.jpeg'] },
+  { id: 11, category: 'Oven Mitts', shade: 'Blue', name: 'Oven Mitts 2 — Blue Vintage Bakery Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts2a.jpeg', 'kitchenovenmitts2b.jpeg', 'kitchenovenmitts2c.jpeg', 'kitchenovenmitts2d.jpeg'] },
+  { id: 12, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 3 — Solid Red Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts3a.jpeg', 'kitchenovenmitts3b.jpeg', 'kitchenovenmitts3c.jpeg', 'kitchenovenmitts3d.jpeg'] },
+  { id: 13, category: 'Aprons', shade: 'Red', name: 'Apron 1 — Red Retro Cafe Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons1a.jpeg', 'kitchenaprons1b.jpeg', 'kitchenaprons1c.jpeg', 'kitchenaprons1d.jpeg'] },
+  { id: 14, category: 'Aprons', shade: 'Blue', name: 'Apron 2 — Blue Vintage Bakery Theme Kitchen Apron', basePrice: 180, pricing: [{ label: 'Standard Size - R180', value: 180 }], images: ['kitchenaprons2a.jpeg', 'kitchenaprons2b.jpeg', 'kitchenaprons2c.jpeg', 'kitchenaprons2d.jpeg'] },
+  { id: 15, category: 'Aprons', shade: 'Red', name: 'Apron 3 — Blue/Red Vintage Bakery Apron & Mitts', basePrice: 180, pricing: [{ label: 'Combo Option - R180', value: 180 }], images: ['kitchenaprons3a.jpeg', 'kitchenaprons3b.jpeg', 'kitchenaprons3c.jpeg', 'kitchenaprons3d.jpeg'] },
+  { id: 16, category: 'Combos', shade: 'Red', name: 'Combo 1 — Red Retro Cafe Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo1a.jpeg', 'kitchenovenmitts&apronscombo1b.jpeg', 'kitchenovenmitts&apronscombo1c.jpeg', 'kitchenovenmitts&apronscombo1d.jpeg'] },
+  { id: 17, category: 'Combos', shade: 'Blue', name: 'Combo 2 — Blue Vintage Bakery Theme Kitchen Apron & Oven Mitts Combo', basePrice: 250, pricing: [{ label: 'Full Combo Set - R250', value: 250 }], images: ['kitchenovenmitts&apronscombo2a.jpeg', 'kitchenovenmitts&apronscombo2b.jpeg', 'kitchenovenmitts&apronscombo2c.jpeg', 'kitchenovenmitts&apronscombo2d.jpeg'] }
 ];
 
 let cart = [];
@@ -582,7 +582,7 @@ function handleCheckout(e) {
   
   let message = `*NML HOME - NEW ORDER*\n\n`;
   message += `*Customer Details:*\n`;
-  message += `• Name: ${name}\n`;
+  message += `• Full Name: ${name}\n`;
   message += `• Phone: ${phone}\n`;
   message += `• Email: ${email}\n`;
   message += `• Address: ${address}\n\n`;
