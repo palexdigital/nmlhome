@@ -30,6 +30,8 @@ ul{list-style:none}
 .search-box{width:100%;padding:10px;background:#ffffff;border:1px solid #e0e0e0;color:#0d0d0d;font-size:14px}
 .hero{position:relative;width:100%;overflow:hidden;background:#ffffff}
 .hero-media{width:100%;min-height:480px;aspect-ratio:2/1;object-fit:cover}
+.hero-video{display:block}
+.hero-image{display:none}
 .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 56px;z-index:2}
 .hero-overlay.center{justify-content:center;align-items:center;text-align:center;padding:48px}
 .hero-overlay.right{align-items:flex-end;text-align:right}
@@ -206,10 +208,14 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 @media(max-width:768px){
   .container,.top-bar-inner,.header-inner,.footer-upper,.footer-bottom,.site-credits{padding-left:20px;padding-right:20px}
   .nav-center{display:flex;gap:12px;font-size:10px}
-  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .shade-products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+  .shade-products{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+  .shade-section .shade-grid{grid-template-columns:1fr;gap:32px}
   .footer-links{grid-template-columns:1fr}
   .hero-overlay,.hero-overlay.center{padding:32px 20px 40px}
+  .hero-video{display:none}
+  .hero-image{display:block}
+  .hero-media{min-height:320px;aspect-ratio:4/3}
   .cart-drawer{width:100%;right:-100%}
 }
 </style>
@@ -246,10 +252,10 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 </div>
 
 <section class="hero">
-  <video class="hero-media" autoplay muted loop playsinline poster="hero_bg.jpg">
+  <video class="hero-media hero-video" autoplay muted loop playsinline poster="hero_bg.jpg">
     <source src="video01.mp4" type="video/mp4">
-    <img src="hero_bg.jpg" alt="NML HOME Collection" class="hero-media">
   </video>
+  <img src="hero_bg.jpg" alt="NML HOME Collection" class="hero-media hero-image">
   <div class="hero-overlay right">
     <h2>La perfection dans le détails</h2>
     <p class="sub" style="color:#a17822;">Premium Aprons & Cushion</p>
@@ -279,10 +285,10 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 </section>
 
 <section class="hero">
-  <video class="hero-media" autoplay muted loop playsinline poster="hero_secondary.jpg">
+  <video class="hero-media hero-video" autoplay muted loop playsinline poster="hero_secondary.jpg">
     <source src="video02.mp4" type="video/mp4">
-    <img src="hero_secondary.jpg" alt="Comfort luxury collection" class="hero-media">
   </video>
+  <img src="hero_secondary.jpg" alt="Comfort luxury collection" class="hero-media hero-image">
   <div class="hero-overlay center">
     <h2>Tailored Comfort & Style.</h2>
     <p class="desc" style="color:#ffffff;">Discover beautiful textures, robust aprons, and deep-toned cushion combinations meticulously rendered for fine living experiences.</p>
@@ -313,10 +319,10 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 </section>
 
 <section class="hero">
-  <video class="hero-media" autoplay muted loop playsinline poster="hero_tertiary.jpg">
+  <video class="hero-media hero-video" autoplay muted loop playsinline poster="hero_tertiary.jpg">
     <source src="video03.mp4" type="video/mp4">
-    <img src="hero_tertiary.jpg" alt="Material display" class="hero-media">
   </video>
+  <img src="hero_tertiary.jpg" alt="Material display" class="hero-media hero-image">
   <div class="hero-overlay center">
     <h2>The Perfect Balance of Materials</h2>
     <p class="desc" style="color:#ffffff;">From durable, heavy-grade fabrics for our aprons to rich textiles for our cushions—explore our inventory today.</p>
@@ -597,7 +603,7 @@ function filterByShade(shade) {
   document.getElementById('sectionTitle').innerText = `${shade} Themes`;
   const filtered = inventory.filter(i => i.shade === shade);
   renderProducts(filtered);
-  window.locationhash = '#shop-section';
+  window.location.hash = '#shop-section';
 }
 
 function toggleSearch(e) {
