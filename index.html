@@ -80,7 +80,7 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 .social{display:flex;gap:32px;align-items:center}
 .social a{opacity:.8;display:inline-flex;align-items:center;justify-content:center}
 .social a:hover{opacity:1}
-.social svg{width:28px;height:28px;fill:#a17822}
+.social svg{width:28px;height:28px;fill:#ffffff}
 .footer-links{display:grid;grid-template-columns:repeat(1,1fr);gap:24px}
 .footer-col h5{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;color:#a17822;font-weight:500}
 .footer-col ul li{margin-bottom:10px}
@@ -91,9 +91,9 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 .footer-bottom-left a:hover{color:#a17822}
 .footer-logo{font-size:28px;font-weight:600;letter-spacing:.22em;color:#a17822}
 .site-credits{background:#ffffff;padding:14px 48px;text-align:center}
-.site-credits a{font-size:11px;letter-spacing:.1em;color:#777777;transition:color .2s}
+.site-credits a{font-size:14px;letter-spacing:.1em;color:#777777;transition:color .2s;font-weight:500}
 .site-credits a:hover{color:#0d0d0d}
-.site-credits a span{color:#a17822}
+.site-credits a span{color:#4b0082}
 
 /* Cart Panel Drawer Styling */
 .cart-drawer{position:fixed;top:0;right:-450px;width:450px;height:100%;background:#ffffff;border-left:1px solid #e0e0e0;z-index:200;transition:right .3s ease;padding:30px;display:flex;flex-direction:column;box-shadow:-5px 0 15px rgba(0,0,0,0.05)}
@@ -242,7 +242,7 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 </header>
 
 <div class="search-container" id="searchContainer">
-  <input type="text" class="search-box" id="searchInput" placeholder="Search for luxury items..." oninput="handleSearch()">
+  <input type="text" class="search-box" id="searchInput" placeholder="Search for items" oninput="handleSearch()">
 </div>
 
 <section class="hero">
@@ -252,7 +252,7 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
   </video>
   <div class="hero-overlay right">
     <h2>La perfection dans le détails</h2>
-    <p class="sub">Premium Aprons & Cushions</p>
+    <p class="sub" style="color:#a17822;">Premium Aprons & Cushion</p>
     <a href="#shop-section" class="btn-white">VIEW OUR COLLECTION</a>
   </div>
 </section>
@@ -281,11 +281,11 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 <section class="hero">
   <video class="hero-media" autoplay muted loop playsinline poster="hero_secondary.jpg">
     <source src="video02.mp4" type="video/mp4">
-    <img src="hero_secondary.jpg" alt="Bespoke luxury collection" class="hero-media">
+    <img src="hero_secondary.jpg" alt="Comfort luxury collection" class="hero-media">
   </video>
   <div class="hero-overlay center">
     <h2>Tailored Comfort & Style.</h2>
-    <p class="desc">Discover beautiful textures, robust aprons, and deep-toned cushion combinations meticulously rendered for fine living experiences.</p>
+    <p class="desc" style="color:#ffffff;">Discover beautiful textures, robust aprons, and deep-toned cushion combinations meticulously rendered for fine living experiences.</p>
     <a href="#shop-section" class="btn-white" onclick="filterCategory('All')">Shop The Collection</a>
   </div>
 </section>
@@ -319,14 +319,14 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
   </video>
   <div class="hero-overlay center">
     <h2>The Perfect Balance of Materials</h2>
-    <p class="desc">From durable, heavy-grade fabrics for our aprons to rich textiles for our cushions—explore our inventory today.</p>
+    <p class="desc" style="color:#ffffff;">From durable, heavy-grade fabrics for our aprons to rich textiles for our cushions—explore our inventory today.</p>
   </div>
 </section>
 
 <section class="map-section" id="stores">
   <div class="container">
     <div class="map-details">
-      <h4>Bespoke Living Crafted for You</h4>
+      <h4>Comfort Living Crafted for You</h4>
       <p>Immerse yourself in the tailored world of NML HOME. Every fabric selection and product grouping represents our complete dedication to elite interior design elements and residential comfort aesthetics.</p>
       <p style="font-size:14px; color:#777777; line-height:1.6; margin-bottom:16px;">To discuss commercial assignments, customized dimensions, and special product deliveries, contact us directly:</p>
       <p style="font-size:14px; color:#0d0d0d; line-height:1.7;">
@@ -436,13 +436,13 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 
 <script>
 const inventory = [
-  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion1a.jpeg', 'cushion1b.jpeg', 'cushion1c.jpeg', 'cushion1d.jpeg'] },
-  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion2a.jpeg', 'cushion2b.jpeg', 'cushion2c.jpeg', 'cushion2d.jpeg'] },
-  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion3a.jpeg', 'cushion3b.jpeg', 'cushion3c.jpeg', 'cushion3d.jpeg'] },
-  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion4a.jpeg', 'cushion4b.jpeg', 'cushion4c.jpeg', 'cushion4d.jpeg'] },
-  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion5a.jpeg', 'cushion5b.jpeg', 'cushion5c.jpeg', 'cushion5d.jpeg'] },
-  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion6a.jpeg', 'cushion6b.jpeg', 'cushion6c.jpeg', 'cushion6d.jpeg'] },
-  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard - R300', value: 300 }, { label: 'Premium Variant - R350', value: 350 }], images: ['cushion7a.jpeg', 'cushion7b.jpeg', 'cushion7c.jpeg', 'cushion7d.jpeg'] },
+  { id: 1, category: 'Cushions', shade: 'Green', name: 'Rich Leafy Green Linen Upholstery Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion1a.jpeg', 'cushion1b.jpeg', 'cushion1c.jpeg', 'cushion1d.jpeg'] },
+  { id: 2, category: 'Cushions', shade: 'Brown', name: 'Safari Themed Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion2a.jpeg', 'cushion2b.jpeg', 'cushion2c.jpeg', 'cushion2d.jpeg'] },
+  { id: 3, category: 'Cushions', shade: 'Other', name: 'Proudly South African Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion3a.jpeg', 'cushion3b.jpeg', 'cushion3c.jpeg', 'cushion3d.jpeg'] },
+  { id: 4, category: 'Cushions', shade: 'Brown', name: 'Deep Coffee Brown Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion4a.jpeg', 'cushion4b.jpeg', 'cushion4c.jpeg', 'cushion4d.jpeg'] },
+  { id: 5, category: 'Cushions', shade: 'Other', name: 'Vintage-Style Bird Print Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion5a.jpeg', 'cushion5b.jpeg', 'cushion5c.jpeg', 'cushion5d.jpeg'] },
+  { id: 6, category: 'Cushions', shade: 'Blue', name: 'Eden Cubist Blue Slub Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion6a.jpeg', 'cushion6b.jpeg', 'cushion6c.jpeg', 'cushion6d.jpeg'] },
+  { id: 7, category: 'Cushions', shade: 'Black', name: 'Black Velvet Cushion', basePrice: 300, pricing: [{ label: 'Standard 55cm x 55cm - R300', value: 300 }, { label: 'Premium Variant 65cm x 65cm - R350', value: 350 }], images: ['cushion7a.jpeg', 'cushion7b.jpeg', 'cushion7c.jpeg', 'cushion7d.jpeg'] },
   { id: 8, category: 'Giorgio Satin', shade: 'Burgundy', name: 'Burgundy Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin1a.jpeg', 'giorgiosatin1b.jpeg', 'giorgiosatin1c.jpeg', 'giorgiosatin1d.jpeg'] },
   { id: 9, category: 'Giorgio Satin', shade: 'Blue', name: 'Pearl Blue Giorgio Satin', basePrice: 200, pricing: [{ label: '1 Unit - R200', value: 200 }, { label: '2 Units Combo - R380', value: 380 }], images: ['giorgiosatin2a.jpeg', 'giorgiosatin2b.jpeg', 'giorgiosatin2c.jpeg', 'giorgiosatin2d.jpeg'] },
   { id: 10, category: 'Oven Mitts', shade: 'Red', name: 'Oven Mitts 1 — Red Retro Cafe Theme', basePrice: 120, pricing: [{ label: 'Single Set - R120', value: 120 }], images: ['kitchenovenmitts1a.jpeg', 'kitchenovenmitts1b.jpeg', 'kitchenovenmitts1c.jpeg', 'kitchenovenmitts1d.jpeg'] },
