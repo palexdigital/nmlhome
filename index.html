@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NML HOME</title>
+<link rel="icon" type="image/png" href="logo.png">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -18,7 +19,9 @@ ul{list-style:none}
 .top-bar-center{text-align:center}
 .main-header{background:#ffffff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:100}
 .header-inner{max-width:1440px;margin:0 auto;padding:18px 48px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-.logo{font-size:18px;font-weight:600;letter-spacing:.22em;color:#a17822;justify-self:start}
+.logo-container{display:flex;flex-direction:column;align-items:center;justify-self:start;text-align:center;gap:4px}
+.logo-img{height:40px;width:auto;object-fit:contain}
+.logo{font-size:14px;font-weight:600;letter-spacing:.22em;color:#a17822;white-space:nowrap}
 .nav-center{display:flex;gap:20px;justify-self:center;font-size:12px;letter-spacing:.04em;color:#0d0d0d;flex-wrap:wrap;justify-content:center}
 .nav-center a:hover, .nav-center a.active{opacity:.6;color:#a17822}
 .nav-right{display:flex;gap:22px;align-items:center;justify-self:end}
@@ -217,6 +220,8 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
   .hero-image{display:block}
   .hero-media{min-height:320px;aspect-ratio:4/3}
   .cart-drawer{width:100%;right:-100%}
+  .logo-img{height:30px}
+  .logo{font-size:11px}
 }
 </style>
 </head>
@@ -226,7 +231,10 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 
 <header class="main-header">
   <div class="header-inner">
-    <a href="#" class="logo" onclick="filterCategory('All')">NML HOME</a>
+    <a href="#" class="logo-container" onclick="filterCategory('All')">
+      <img src="logo.png" alt="NML HOME Logo" class="logo-img">
+      <span class="logo">NML HOME</span>
+    </a>
     <nav class="nav-center">
       <a href="#" class="nav-link active" onclick="filterCategory('All')">Shop All</a>
       <a href="#" class="nav-link" onclick="filterCategory('Aprons')">Aprons</a>
