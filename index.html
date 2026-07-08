@@ -131,6 +131,78 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 .slider-thumbnails img{width:45px;height:55px;object-fit:cover;border:1px solid #e0e0e0;cursor:pointer;opacity:0.6}
 .slider-thumbnails img.active{border-color:#a17822;opacity:1}
 
+/* New Social Card Styles */
+.social-card {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: transparent;
+  padding: 0;
+}
+.Btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.svgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  letter-spacing: 0.8px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  border: 1px solid rgba(156, 156, 156, 0.466);
+  z-index: 2;
+}
+.BG {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #181818;
+  z-index: 1;
+  border-radius: 10px;
+  pointer-events: none;
+  transition: all 0.3s;
+  font-size: 0px;
+}
+.instagram .BG {
+  background: #e1306c;
+}
+.whatsapp .BG {
+  background: #075e54;
+}
+.gmail .BG {
+  background: #ea4335;
+}
+.call .BG {
+  background: #4caf50;
+}
+.Btn:hover .BG {
+  transform: scale(1.5);
+  font-size: 20px;
+  color: white;
+}
+.Btn:hover .svgContainer {
+  border: 1px solid rgba(216, 216, 216, 0.466);
+  background-color: rgba(209, 209, 209, 0.466);
+  backdrop-filter: blur(4px);
+}
+
 @media(max-width:768px){
   .container,.top-bar-inner,.header-inner,.footer-upper,.footer-bottom,.site-credits{padding-left:20px;padding-right:20px}
   .nav-center{display:flex;gap:12px;font-size:10px}
@@ -310,18 +382,46 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 <footer>
   <div class="footer-upper">
     <div class="social">
-      <a href="https://www.instagram.com/nml_mode_home?utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#a17822" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#a17822" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#a17822"/></svg>
-      </a>
-      <a href="https://wa.me/27784329893" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.93 0c3.165.001 6.14 1.233 8.377 3.473 2.238 2.24 3.467 5.218 3.465 8.385-.004 6.581-5.341 11.932-11.873 11.932-2.007-.001-3.982-.51-5.733-1.482L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.743 1.451 5.416 0 9.825-4.383 9.828-9.772.001-2.61-1.011-5.064-2.852-6.908C16.471 2.083 14.024.965 11.43.965c-5.418 0-9.829 4.384-9.832 9.774-.001 1.628.487 3.213 1.414 4.616l-.995 3.635 3.733-.976zM17.486 14.4c-.333-.167-1.972-.974-2.278-1.085-.306-.112-.53-.167-.752.167-.222.334-.861 1.085-1.055 1.306-.195.222-.389.25-.722.083-1.032-.517-2.03-1.11-2.88-1.874-.741-.664-1.24-1.485-1.385-1.736-.146-.252-.016-.387.11-.512.112-.113.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438-.063-.125-.53-1.278-.727-1.75-.19-.462-.385-.398-.53-.405-.136-.006-.293-.007-.449-.007-.156 0-.411.059-.626.292-.215.233-.821.803-.821 1.957 0 1.153.84 2.27 1.008 2.44 1.258 1.637 2.766 2.628 4.606 3.344.437.17.876.273 1.312.333.626.066 1.196.036 1.646-.03.5-.074 1.542-.63 1.758-1.238.214-.609.214-1.13.15-1.238-.063-.108-.233-.166-.566-.333z" fill="#a17822"/></svg>
-      </a>
-      <a href="tel:0784329893" aria-label="Phone Contacts">
-        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.27 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.58 1 1 0 0 1-.27 1.11z" fill="#a17822"/></svg>
-      </a>
+      <div class="social-card">
+        <button class="Btn instagram" onclick="window.open('https://www.instagram.com/nml_mode_home?utm_source=qr', '_blank')">
+          <span class="svgContainer">
+            <svg height="1.6em" viewBox="0 0 24 24" fill="white">
+              <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+            </svg>
+          </span>
+          <span class="BG"></span>
+        </button>
+
+        <button class="Btn whatsapp" onclick="window.open('https://wa.me/27784329893', '_blank')">
+          <span class="svgContainer">
+            <svg height="1.6em" fill="white" viewBox="0 0 448 512">
+              <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
+            </svg>
+          </span>
+          <span class="BG"></span>
+        </button>
+
+        <button class="Btn gmail" onclick="window.open('mailto:lucientumba2@gmail.com', '_blank')">
+          <span class="svgContainer">
+            <svg height="1.4em" fill="white" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </span>
+          <span class="BG"></span>
+        </button>
+
+        <button class="Btn call" onclick="window.open('tel:0784329893', '_self')">
+          <span class="svgContainer">
+            <svg height="1.4em" fill="white" viewBox="0 0 24 24">
+              <path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.27 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.58 1 1 0 0 1-.27 1.11z"/>
+            </svg>
+          </span>
+          <span class="BG"></span>
+        </button>
+      </div>
     </div>
     <div class="footer-links">
-      <div class="footer-col"><h5>Help</h5><ul><li><a href="#stores">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h5>Help</h5><ul><li><a href="tel:0784329893">Contact Us</a></li></ul></div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -331,7 +431,7 @@ footer{background:#f9f9f9;border-top:1px solid #e0e0e0}
 </footer>
 
 <div class="site-credits">
-  <a href="https://palexdigital.pages.dev/" target="_blank" rel="noopener noreferrer">Developed By <span>paléXdigital</span></a>
+  <a href="https://palexdigital.pages.dev/" target="_blank" rel="noopener noreferrer">Developed By <span style="color: #4b0082;">paléXdigital</span></a>
 </div>
 
 <script>
@@ -497,7 +597,7 @@ function filterByShade(shade) {
   document.getElementById('sectionTitle').innerText = `${shade} Themes`;
   const filtered = inventory.filter(i => i.shade === shade);
   renderProducts(filtered);
-  window.location.hash = '#shop-section';
+  window.locationhash = '#shop-section';
 }
 
 function toggleSearch(e) {
